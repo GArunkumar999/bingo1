@@ -24,8 +24,14 @@ pipeline{
                  sh 'docker build -t bingo-app:latest .'
                  sh 'docker tag bingo-app:latest arun596/bingo-app:latest'
                  sh 'docker push arun596/bingo-app:latest'
+                 sh 'docker rmi arun596/bingo-app:latest'
                 }
 
+            }
+        }
+        stage('run container'){
+            steps{
+                sh 'docker run -d --name bingo-app -p 3000:3000 arun596/bingo-app:latest'
             }
         }
     }
