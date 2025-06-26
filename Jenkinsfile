@@ -20,7 +20,7 @@ pipeline{
         }
         stage('docker build and push'){
             steps{
-                withDockerRegistry(credentialsId: 'dockerhub', toolName: 'docker') {
+                withDockerRegistry(credentialsId: 'dockerhub') {
                  sh 'docker build -t bingo-app:latest .'
                  sh 'docker tag bingo-app:latest arun596/bingo-app:latest'
                  sh 'docker push arun596/bingo-app:latest'
